@@ -6,7 +6,9 @@ module scenes {
     private _plane:objects.Plane;
     private _ocean:objects.Ocean;
     private _island:objects.Island;
+    private _clouds:objects.Cloud[];
 
+    private _cloudNum:number;
 
     // PUBLIC PROPERTIES
 
@@ -24,6 +26,9 @@ module scenes {
       this._plane = new objects.Plane(this._assetManager);
       this._ocean = new objects.Ocean(this._assetManager);
       this._island = new objects.Island(this._assetManager);
+      this._cloudNum = 3;
+      this._clouds = new Array<objects.Cloud>();
+
       this.Main();
     }
 
@@ -31,6 +36,12 @@ module scenes {
       this._plane.Update();
       this._ocean.Update();
       this._island.Update();
+
+      this._clouds.forEach(cloud => {
+        cloud.Update();
+      });
+
+
       return this._currentScene;
     }
 
@@ -38,6 +49,11 @@ module scenes {
       this.addChild(this._ocean);
       this.addChild(this._island);
       this.addChild(this._plane);
+
+      for (let count = 0; count < this._cloudNum; count++) {
+        this._clouds[count] = new objects.Cloud(this._assetManager);
+        this.addChild(this._clouds[count]);
+      }
 
     }
   }

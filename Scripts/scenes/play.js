@@ -27,18 +27,27 @@ var scenes;
             this._plane = new objects.Plane(this._assetManager);
             this._ocean = new objects.Ocean(this._assetManager);
             this._island = new objects.Island(this._assetManager);
+            this._cloudNum = 3;
+            this._clouds = new Array();
             this.Main();
         };
         Play.prototype.Update = function () {
             this._plane.Update();
             this._ocean.Update();
             this._island.Update();
+            this._clouds.forEach(function (cloud) {
+                cloud.Update();
+            });
             return this._currentScene;
         };
         Play.prototype.Main = function () {
             this.addChild(this._ocean);
             this.addChild(this._island);
             this.addChild(this._plane);
+            for (var count = 0; count < this._cloudNum; count++) {
+                this._clouds[count] = new objects.Cloud(this._assetManager);
+                this.addChild(this._clouds[count]);
+            }
         };
         return Play;
     }(objects.Scene));
