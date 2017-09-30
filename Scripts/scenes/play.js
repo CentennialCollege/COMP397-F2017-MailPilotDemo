@@ -26,15 +26,18 @@ var scenes;
         Play.prototype.Start = function () {
             this._plane = new objects.Plane(this._assetManager);
             this._ocean = new objects.Ocean(this._assetManager);
+            this._island = new objects.Island(this._assetManager);
             this.Main();
         };
         Play.prototype.Update = function () {
             this._plane.Update();
             this._ocean.Update();
+            this._island.Update();
             return this._currentScene;
         };
         Play.prototype.Main = function () {
             this.addChild(this._ocean);
+            this.addChild(this._island);
             this.addChild(this._plane);
         };
         return Play;

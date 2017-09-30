@@ -24,11 +24,12 @@ module objects {
 
     // PUBLIC METHODS
     public Start():void {
+      this._verticalSpeed = 5;
       this._reset();
     }
 
     public Update():void {
-      this.y += 5;
+      this.y += this._verticalSpeed;
       this._checkBounds();
     }
   }

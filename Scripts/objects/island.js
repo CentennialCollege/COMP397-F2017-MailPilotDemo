@@ -10,35 +10,42 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Ocean = /** @class */ (function (_super) {
-        __extends(Ocean, _super);
+    var Island = /** @class */ (function (_super) {
+        __extends(Island, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function Ocean(assetManager) {
-            var _this = _super.call(this, assetManager.getResult("ocean")) || this;
+        function Island(assetManager) {
+            var _this = _super.call(this, assetManager.getResult("island")) || this;
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
-        Ocean.prototype._reset = function () {
-            this.y = -960;
+        Island.prototype._reset = function () {
+            this.y = -this.height;
+            this.x = (Math.random() * (640 - this.width)) + this.halfWidth;
         };
-        Ocean.prototype._checkBounds = function () {
-            if (this.y >= 0) {
+        Island.prototype._checkBounds = function () {
+            if (this.y >= 480 + this.height) {
                 this._reset();
             }
         };
         // PUBLIC METHODS
-        Ocean.prototype.Start = function () {
+        Island.prototype.Start = function () {
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
+            this.halfWidth = this.width * 0.5;
+            this.halfHeight = this.height * 0.5;
+            this.regX = this.halfWidth;
+            this.regY = this.halfHeight;
             this._verticalSpeed = 5;
             this._reset();
         };
-        Ocean.prototype.Update = function () {
+        Island.prototype.Update = function () {
             this.y += this._verticalSpeed;
             this._checkBounds();
         };
-        return Ocean;
+        return Island;
     }(createjs.Bitmap));
-    objects.Ocean = Ocean;
+    objects.Island = Island;
 })(objects || (objects = {}));
-//# sourceMappingURL=ocean.js.map
+//# sourceMappingURL=island.js.map
