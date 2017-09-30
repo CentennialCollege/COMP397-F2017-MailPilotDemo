@@ -4,6 +4,7 @@ module scenes {
     private _assetManager:createjs.LoadQueue;
 
     private _plane:objects.Plane;
+    private _ocean:objects.Ocean;
 
 
     // PUBLIC PROPERTIES
@@ -20,17 +21,18 @@ module scenes {
     // PUBLIC METHODS
     public Start():void {
       this._plane = new objects.Plane(this._assetManager);
-
+      this._ocean = new objects.Ocean(this._assetManager);
       this.Main();
     }
 
     public Update():number {
       this._plane.Update();
-
+      this._ocean.Update();
       return this._currentScene;
     }
 
     public Main():void {
+      this.addChild(this._ocean);
       this.addChild(this._plane);
 
     }
