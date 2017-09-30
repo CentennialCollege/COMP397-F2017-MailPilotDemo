@@ -26,6 +26,7 @@ module scenes {
 
     public Update():number {
       this._plane.Update();
+
       return this._currentScene;
     }
 

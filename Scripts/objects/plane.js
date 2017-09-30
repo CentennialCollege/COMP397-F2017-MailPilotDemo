@@ -12,7 +12,6 @@ var objects;
 (function (objects) {
     var Plane = /** @class */ (function (_super) {
         __extends(Plane, _super);
-        // PRIVATE INSTANCE VARIABLES
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
         function Plane(assetManager) {
@@ -21,14 +20,28 @@ var objects;
             return _this;
         }
         // PRIVATE METHODS
+        Plane.prototype._checkBounds = function () {
+            if (this.x >= 640 - this.halfWidth) {
+                this.x = 640 - this.halfWidth;
+            }
+            if (this.x <= this.halfWidth) {
+                this.x = this.halfWidth;
+            }
+        };
         // PUBLIC METHODS
         Plane.prototype.Start = function () {
-            this.regX = this.getBounds().width * 0.5;
-            this.regY = this.getBounds().height * 0.5;
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
+            this.halfWidth = this.width * 0.5;
+            this.halfHeight = this.height * 0.5;
+            this.regX = this.halfWidth;
+            this.regY = this.halfHeight;
             this.x = 320;
             this.y = 430;
         };
         Plane.prototype.Update = function () {
+            this.x = this.stage.mouseX;
+            this._checkBounds();
         };
         return Plane;
     }(createjs.Bitmap));
