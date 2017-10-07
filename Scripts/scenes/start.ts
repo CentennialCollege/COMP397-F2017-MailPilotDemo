@@ -5,6 +5,7 @@ module scenes {
 
     private _welcomeLabel:objects.Label;
     private _startButton:objects.Button;
+    private _ocean: objects.Ocean;
 
     // PUBLIC PROPERTIES
 
@@ -19,17 +20,19 @@ module scenes {
 
     // PUBLIC METHODS
     public Start():void {
-      this._welcomeLabel = new objects.Label("Mail Pilot", "80px", "Consolas", "#000000", 320, 240, true);
+      this._welcomeLabel = new objects.Label("Mail Pilot", "80px", "Dock51", "#FFFF00", 320, 240, true);
       this._startButton = new objects.Button(this._assetManager, "startButton", 320, 340, true);
+      this._ocean = new objects.Ocean(this._assetManager);
       this.Main();
     }
 
     public Update():number {
+      this._ocean.Update();
       return this._currentScene;
     }
 
     public Main():void {
-
+      this.addChild(this._ocean);
       this.addChild(this._welcomeLabel);
 
 
