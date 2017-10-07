@@ -54,7 +54,11 @@ module scenes {
         this._clouds[count] = new objects.Cloud(this._assetManager);
         this.addChild(this._clouds[count]);
       }
+    }
+
+    private _checkCollision() {
 
     }
+
   }
 }
