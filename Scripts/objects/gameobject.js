@@ -16,6 +16,7 @@ var objects;
         // CONSTRUCTORS
         function GameObject(assetManager, imageString) {
             var _this = _super.call(this, assetManager.getResult(imageString)) || this;
+            _this.name = imageString;
             _this._initialize();
             return _this;
         }
@@ -27,11 +28,8 @@ var objects;
             this.halfHeight = this.height * 0.5;
             this.regX = this.halfWidth;
             this.regY = this.halfHeight;
-        };
-        // PUBLIC METHODS
-        GameObject.prototype.Start = function () {
-        };
-        GameObject.prototype.Update = function () {
+            this.position = new createjs.Point(this.x, this.y);
+            this.isColliding = false;
         };
         return GameObject;
     }(createjs.Bitmap));

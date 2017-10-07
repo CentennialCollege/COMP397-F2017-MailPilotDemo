@@ -1,18 +1,21 @@
 module objects {
-  export class GameObject extends createjs.Bitmap {
+  export abstract class GameObject extends createjs.Bitmap {
     // PRIVATE INSTANCE VARIABLES
     public width:number;
     public height:number;
     public halfWidth:number;
     public halfHeight:number;
     public verticalSpeed:number;
-    public  horizontalSpeed:number;
+    public horizontalSpeed:number;
+    public position:createjs.Point;
+    public isColliding:boolean;
 
     // PUBLIC PROPERTIES
 
     // CONSTRUCTORS
     constructor(assetManager: createjs.LoadQueue, imageString: string) {
       super(assetManager.getResult(imageString));
+      this.name = imageString;
 
       this._initialize();
     }
@@ -25,15 +28,13 @@ module objects {
       this.halfHeight = this.height * 0.5;
       this.regX = this.halfWidth;
       this.regY = this.halfHeight;
+      this.position = new createjs.Point(this.x, this.y);
+      this.isColliding = false;
     }
 
     // PUBLIC METHODS
-    public Start():void {
+    public abstract Start():void;
 
-    }
-
-    public Update():void {
-
-    }
+    public abstract Update():void;
   }
 }
