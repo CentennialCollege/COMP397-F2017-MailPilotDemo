@@ -1,5 +1,5 @@
 module objects {
-  export class Plane extends createjs.Bitmap {
+  export class Plane extends createjs.Sprite {
     // PRIVATE INSTANCE VARIABLES
     width:number;
     height:number;
@@ -9,8 +9,8 @@ module objects {
     // PUBLIC PROPERTIES
 
     // CONSTRUCTORS
-    constructor(assetManager:createjs.LoadQueue) {
-      super(assetManager.getResult("plane"));
+    constructor(textureAtlas: createjs.SpriteSheet) {
+      super(textureAtlas, "plane");
       this.Start();
     }
     // PRIVATE METHODS

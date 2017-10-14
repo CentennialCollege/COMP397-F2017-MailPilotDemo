@@ -15,8 +15,8 @@ var objects;
         // PRIVATE INSTANCE VARIABLES
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function Island(assetManager) {
-            var _this = _super.call(this, assetManager, "island") || this;
+        function Island(textureAtlas) {
+            var _this = _super.call(this, textureAtlas, "island") || this;
             _this.Start();
             return _this;
         }

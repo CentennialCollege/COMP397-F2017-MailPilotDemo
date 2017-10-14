@@ -1,5 +1,5 @@
 module objects {
-  export class Button extends createjs.Bitmap {
+  export class Button extends createjs.Sprite {
     // PRIVATE INSTANCE VARIABlES +++++++++++
     // PUBLIC PROPERTIES ++++++++++++++++++++
     // CONSTRUCTORS +++++++++++++++++++++++++
@@ -14,12 +14,12 @@ module objects {
      * @param {boolean} isCentered
      */
     constructor(
-      assetManager:createjs.LoadQueue,
+      textureAtlas:createjs.SpriteSheet,
       imageName:string,
       x:number,
       y:number,
       isCentered:boolean) {
-      super(assetManager.getResult(imageName));
+      super(textureAtlas, imageName);
 
       if(isCentered) {
         this.regX = this.getBounds().width * 0.5;

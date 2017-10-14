@@ -1,5 +1,5 @@
 module objects {
-  export abstract class GameObject extends createjs.Bitmap {
+  export abstract class GameObject extends createjs.Sprite {
     // PRIVATE INSTANCE VARIABLES
     public width:number;
     public height:number;
@@ -13,8 +13,8 @@ module objects {
     // PUBLIC PROPERTIES
 
     // CONSTRUCTORS
-    constructor(assetManager: createjs.LoadQueue, imageString: string) {
-      super(assetManager.getResult(imageString));
+    constructor(textureAtlas:createjs.SpriteSheet, imageString: string) {
+      super(textureAtlas, imageString);
       this.name = imageString;
 
       this._initialize();

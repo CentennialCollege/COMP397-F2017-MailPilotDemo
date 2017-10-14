@@ -2,6 +2,7 @@ module scenes {
   export class Play extends objects.Scene {
     // PRIVATE INSTANCE VARIABLES
     private _assetManager: createjs.LoadQueue;
+    private _textureAtlas: createjs.SpriteSheet;
 
     private _plane: objects.Plane;
     private _ocean: objects.Ocean;
@@ -20,10 +21,11 @@ module scenes {
     // PUBLIC PROPERTIES
 
     // CONSTRUCTORS
-    constructor(assetManager: createjs.LoadQueue, currentScene: number) {
+    constructor(assetManager: createjs.LoadQueue, textureAtlas:createjs.SpriteSheet, currentScene: number) {
       super();
       this._assetManager = assetManager;
       this._currentScene = currentScene;
+      this._textureAtlas = textureAtlas;
       this.Start();
     }
     // PRIVATE METHODS
@@ -32,9 +34,9 @@ module scenes {
     public Start(): void {
       this._engineSound = createjs.Sound.play("engine", 0, 0, 0, -1, 0.25, 0);
 
-      this._plane = new objects.Plane(this._assetManager);
+      this._plane = new objects.Plane(this._textureAtlas);
       this._ocean = new objects.Ocean(this._assetManager);
-      this._island = new objects.Island(this._assetManager);
+      this._island = new objects.Island(this._textureAtlas);
       this._cloudNum = 3;
       this._clouds = new Array<objects.Cloud>();
 
@@ -69,7 +71,7 @@ module scenes {
       this.addChild(this._plane);
 
       for (let count = 0; count < this._cloudNum; count++) {
-        this._clouds[count] = new objects.Cloud(this._assetManager);
+        this._clouds[count] = new objects.Cloud(this._textureAtlas);
         this.addChild(this._clouds[count]);
       }
 

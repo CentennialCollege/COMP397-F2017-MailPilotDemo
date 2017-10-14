@@ -14,8 +14,8 @@ var objects;
         __extends(Plane, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function Plane(assetManager) {
-            var _this = _super.call(this, assetManager.getResult("plane")) || this;
+        function Plane(textureAtlas) {
+            var _this = _super.call(this, textureAtlas, "plane") || this;
             _this.Start();
             return _this;
         }
@@ -44,7 +44,7 @@ var objects;
             this._checkBounds();
         };
         return Plane;
-    }(createjs.Bitmap));
+    }(createjs.Sprite));
     objects.Plane = Plane;
 })(objects || (objects = {}));
 //# sourceMappingURL=plane.js.map

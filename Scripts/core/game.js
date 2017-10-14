@@ -4,16 +4,33 @@
     var canvas;
     var assetManager;
     var assetManifest = [
-        { id: "restartButton", src: "../../Assets/images/restartButton.png" },
-        { id: "startButton", src: "../../Assets/images/startButton.png" },
-        { id: "plane", src: "../../Assets/images/plane.png" },
-        { id: "island", src: "../../Assets/images/island.png" },
-        { id: "cloud", src: "../../Assets/images/cloud.png" },
         { id: "ocean", src: "../../Assets/images/ocean.gif" },
         { id: "engine", src: "../../Assets/audio/engine.ogg" },
         { id: "thunder", src: "../../Assets/audio/thunder.ogg" },
         { id: "yay", src: "../../Assets/audio/yay.ogg" }
     ];
+    var textureAtlasData = {
+        "images": [
+            "../../Assets/spritesheets/textureatlas.png"
+        ],
+        "frames": [
+            [1, 1, 9, 9, 0, 0, 0],
+            [12, 1, 226, 178, 0, 0, 0],
+            [1, 181, 62, 63, 0, 0, 0],
+            [65, 181, 65, 65, 0, 0, 0],
+            [1, 248, 150, 50, 0, 0, 0],
+            [1, 300, 150, 50, 0, 0, 0],
+        ],
+        "animations": {
+            "bullet": { "frames": [0] },
+            "cloud": { "frames": [1] },
+            "island": { "frames": [2] },
+            "plane": { "frames": [3] },
+            "restartButton": { "frames": [4] },
+            "startButton": { "frames": [5] }
+        }
+    };
+    var textureAtlas;
     var currentScene;
     var currentState;
     function Init() {
@@ -21,6 +38,7 @@
         assetManager.installPlugin(createjs.Sound);
         assetManager.on("complete", Start);
         assetManager.loadManifest(assetManifest);
+        textureAtlas = new createjs.SpriteSheet(textureAtlasData);
     }
     function Start() {
         canvas = document.getElementById("canvas");
@@ -43,13 +61,13 @@
         stage.removeAllChildren();
         switch (currentState) {
             case config.START:
-                currentScene = new scenes.Start(assetManager, currentState);
+                currentScene = new scenes.Start(assetManager, textureAtlas, currentState);
                 break;
             case config.PLAY:
-                currentScene = new scenes.Play(assetManager, currentState);
+                currentScene = new scenes.Play(assetManager, textureAtlas, currentState);
                 break;
             case config.END:
-                currentScene = new scenes.End(assetManager, currentState);
+                currentScene = new scenes.End(assetManager, textureAtlas, currentState);
                 break;
         }
         stage.addChild(currentScene);

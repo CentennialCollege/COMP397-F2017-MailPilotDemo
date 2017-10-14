@@ -14,10 +14,11 @@ var scenes;
         __extends(End, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function End(assetManager, currentScene) {
+        function End(assetManager, textureAtlas, currentScene) {
             var _this = _super.call(this) || this;
             _this._assetManager = assetManager;
             _this._currentScene = currentScene;
+            _this._textureAtlas = textureAtlas;
             _this.Start();
             return _this;
         }
@@ -25,7 +26,7 @@ var scenes;
         // PUBLIC METHODS
         End.prototype.Start = function () {
             this._gameOverLabel = new objects.Label("Game Over", "80px", "Dock51", "#FFFF00", 320, 240, true);
-            this._restartButton = new objects.Button(this._assetManager, "restartButton", 320, 340, true);
+            this._restartButton = new objects.Button(this._textureAtlas, "restartButton", 320, 340, true);
             this._ocean = new objects.Ocean(this._assetManager);
             this.Main();
         };

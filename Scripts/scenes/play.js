@@ -14,10 +14,11 @@ var scenes;
         __extends(Play, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function Play(assetManager, currentScene) {
+        function Play(assetManager, textureAtlas, currentScene) {
             var _this = _super.call(this) || this;
             _this._assetManager = assetManager;
             _this._currentScene = currentScene;
+            _this._textureAtlas = textureAtlas;
             _this.Start();
             return _this;
         }
@@ -25,9 +26,9 @@ var scenes;
         // PUBLIC METHODS
         Play.prototype.Start = function () {
             this._engineSound = createjs.Sound.play("engine", 0, 0, 0, -1, 0.25, 0);
-            this._plane = new objects.Plane(this._assetManager);
+            this._plane = new objects.Plane(this._textureAtlas);
             this._ocean = new objects.Ocean(this._assetManager);
-            this._island = new objects.Island(this._assetManager);
+            this._island = new objects.Island(this._textureAtlas);
             this._cloudNum = 3;
             this._clouds = new Array();
             this._lives = 5;
@@ -53,7 +54,7 @@ var scenes;
             this.addChild(this._island);
             this.addChild(this._plane);
             for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new objects.Cloud(this._assetManager);
+                this._clouds[count] = new objects.Cloud(this._textureAtlas);
                 this.addChild(this._clouds[count]);
             }
             this.addChild(this._livesLabel);

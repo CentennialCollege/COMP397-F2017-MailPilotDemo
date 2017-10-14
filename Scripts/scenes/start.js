@@ -14,9 +14,10 @@ var scenes;
         __extends(Start, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function Start(assetManager, currentScene) {
+        function Start(assetManager, textureAtlas, currentScene) {
             var _this = _super.call(this) || this;
             _this._assetManager = assetManager;
+            _this._textureAtlas = textureAtlas;
             _this._currentScene = currentScene;
             _this.Start();
             return _this;
@@ -25,7 +26,7 @@ var scenes;
         // PUBLIC METHODS
         Start.prototype.Start = function () {
             this._welcomeLabel = new objects.Label("Mail Pilot", "80px", "Dock51", "#FFFF00", 320, 240, true);
-            this._startButton = new objects.Button(this._assetManager, "startButton", 320, 340, true);
+            this._startButton = new objects.Button(this._textureAtlas, "startButton", 320, 340, true);
             this._ocean = new objects.Ocean(this._assetManager);
             this.Main();
         };

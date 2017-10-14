@@ -15,8 +15,8 @@ var objects;
         // PRIVATE INSTANCE VARIABLES
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function Cloud(assetManager) {
-            var _this = _super.call(this, assetManager, "cloud") || this;
+        function Cloud(textureAtlas) {
+            var _this = _super.call(this, textureAtlas, "cloud") || this;
             _this.Start();
             return _this;
         }

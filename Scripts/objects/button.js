@@ -24,8 +24,8 @@ var objects;
          * @param {number} y
          * @param {boolean} isCentered
          */
-        function Button(assetManager, imageName, x, y, isCentered) {
-            var _this = _super.call(this, assetManager.getResult(imageName)) || this;
+        function Button(textureAtlas, imageName, x, y, isCentered) {
+            var _this = _super.call(this, textureAtlas, imageName) || this;
             if (isCentered) {
                 _this.regX = _this.getBounds().width * 0.5;
                 _this.regY = _this.getBounds().height * 0.5;
@@ -45,7 +45,7 @@ var objects;
             this.alpha = 1.0; // change the opacity to 100%
         };
         return Button;
-    }(createjs.Bitmap));
+    }(createjs.Sprite));
     objects.Button = Button;
 })(objects || (objects = {}));
 //# sourceMappingURL=button.js.map

@@ -5,8 +5,8 @@ module objects {
     // PUBLIC PROPERTIES
 
     // CONSTRUCTORS
-    constructor(assetManager: createjs.LoadQueue) {
-      super(assetManager, "island");
+    constructor(textureAtlas:createjs.SpriteSheet) {
+      super(textureAtlas, "island");
 
       this.Start();
     }

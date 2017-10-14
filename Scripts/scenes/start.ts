@@ -2,6 +2,7 @@ module scenes {
   export class Start extends objects.Scene {
     // PRIVATE INSTANCE VARIABLES
     private _assetManager:createjs.LoadQueue;
+    private _textureAtlas:createjs.SpriteSheet;
 
     private _welcomeLabel:objects.Label;
     private _startButton:objects.Button;
@@ -10,9 +11,10 @@ module scenes {
     // PUBLIC PROPERTIES
 
     // CONSTRUCTORS
-    constructor(assetManager:createjs.LoadQueue, currentScene:number) {
+    constructor(assetManager:createjs.LoadQueue, textureAtlas:createjs.SpriteSheet, currentScene:number) {
       super();
       this._assetManager = assetManager;
+      this._textureAtlas = textureAtlas;
       this._currentScene = currentScene;
       this.Start();
     }
@@ -21,7 +23,7 @@ module scenes {
     // PUBLIC METHODS
     public Start():void {
       this._welcomeLabel = new objects.Label("Mail Pilot", "80px", "Dock51", "#FFFF00", 320, 240, true);
-      this._startButton = new objects.Button(this._assetManager, "startButton", 320, 340, true);
+      this._startButton = new objects.Button(this._textureAtlas, "startButton", 320, 340, true);
       this._ocean = new objects.Ocean(this._assetManager);
       this.Main();
     }
