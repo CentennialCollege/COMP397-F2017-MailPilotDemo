@@ -19,6 +19,7 @@ var scenes;
             _this._assetManager = assetManager;
             _this._currentScene = currentScene;
             _this._textureAtlas = textureAtlas;
+            _this._bulletFire = _this._bulletFire.bind(_this);
             _this.Start();
             return _this;
         }
@@ -29,6 +30,9 @@ var scenes;
             this._plane = new objects.Plane(this._textureAtlas);
             this._ocean = new objects.Ocean(this._assetManager);
             this._island = new objects.Island(this._textureAtlas);
+            this._bulletNum = 50;
+            this._bullets = new Array();
+            this._bulletCounter = 0;
             this._cloudNum = 3;
             this._clouds = new Array();
             this._lives = 5;
@@ -43,6 +47,9 @@ var scenes;
             this._ocean.Update();
             this._island.Update();
             this._checkCollision(this._island);
+            this._bullets.forEach(function (bullet) {
+                bullet.Update();
+            });
             this._clouds.forEach(function (cloud) {
                 cloud.Update();
                 _this._checkCollision(cloud);
@@ -53,12 +60,27 @@ var scenes;
             this.addChild(this._ocean);
             this.addChild(this._island);
             this.addChild(this._plane);
+            for (var count = 0; count < this._bulletNum; count++) {
+                this._bullets[count] = new objects.Bullet(this._textureAtlas);
+                this.addChild(this._bullets[count]);
+            }
             for (var count = 0; count < this._cloudNum; count++) {
                 this._clouds[count] = new objects.Cloud(this._textureAtlas);
                 this.addChild(this._clouds[count]);
             }
             this.addChild(this._livesLabel);
             this.addChild(this._scoreLabel);
+            //window.addEventListener("mousedown", () => {this._bulletFire()});
+            window.addEventListener("mousedown", this._bulletFire);
+        };
+        Play.prototype._bulletFire = function () {
+            this._bullets[this._bulletCounter].x = this._plane.bulletSpawn.x;
+            this._bullets[this._bulletCounter].y = this._plane.bulletSpawn.y;
+            this._bulletCounter++;
+            console.log(this._bulletCounter);
+            if (this._bulletCounter >= this._bulletNum - 1) {
+                this._bulletCounter = 0;
+            }
         };
         Play.prototype._checkCollision = function (other) {
             var P1 = new createjs.Point(this._plane.x, this._plane.y);
@@ -77,6 +99,7 @@ var scenes;
                         if (this._lives <= 0) {
                             this._currentScene = config.END;
                             this._engineSound.stop();
+                            window.removeEventListener("mousedown", this._bulletFire);
                             this.removeAllChildren();
                         }
                         createjs.Sound.play("thunder", 0, 0, 0, 0, 0.5, 0);

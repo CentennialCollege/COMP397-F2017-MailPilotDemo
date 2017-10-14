@@ -6,6 +6,8 @@ module objects {
     halfWidth:number;
     halfHeight:number;
 
+    bulletSpawn:createjs.Point;
+
     // PUBLIC PROPERTIES
 
     // CONSTRUCTORS
@@ -34,10 +36,13 @@ module objects {
       this.regY = this.halfHeight;
       this.x = 320;
       this.y = 430;
+      this.bulletSpawn = new createjs.Point(this.y - 35, this.x);
     }
 
     public Update() {
       this.x = this.stage.mouseX;
+      this.bulletSpawn.x = this.x;
+      this.bulletSpawn.y = this.y -35;
       this._checkBounds();
     }
   }
