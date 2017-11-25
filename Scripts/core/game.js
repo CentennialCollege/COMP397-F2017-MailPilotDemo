@@ -4,14 +4,14 @@
     var canvas;
     var assetManager;
     var assetManifest = [
-        { id: "ocean", src: "../../Assets/images/ocean.gif" },
-        { id: "engine", src: "../../Assets/audio/engine.ogg" },
-        { id: "thunder", src: "../../Assets/audio/thunder.ogg" },
-        { id: "yay", src: "../../Assets/audio/yay.ogg" }
+        { id: "ocean", src: "./Assets/images/ocean.gif" },
+        { id: "engine", src: "./Assets/audio/engine.ogg" },
+        { id: "thunder", src: "./Assets/audio/thunder.ogg" },
+        { id: "yay", src: "./Assets/audio/yay.ogg" }
     ];
     var textureAtlasData = {
         "images": [
-            "../../Assets/spritesheets/textureatlas.png"
+            "./Assets/spritesheets/textureatlas.png"
         ],
         "frames": [
             [1, 1, 53, 54, 0, 0, 0],

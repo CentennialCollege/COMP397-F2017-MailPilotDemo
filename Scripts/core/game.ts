@@ -4,16 +4,16 @@
   let canvas:any;
   let assetManager:createjs.LoadQueue;
   let assetManifest = [
-    {id: "ocean", src:"../../Assets/images/ocean.gif"},
-    {id: "engine", src:"../../Assets/audio/engine.ogg"},
-    {id: "thunder", src:"../../Assets/audio/thunder.ogg"},
-    {id: "yay", src:"../../Assets/audio/yay.ogg"}
+    {id: "ocean", src:"./Assets/images/ocean.gif"},
+    {id: "engine", src:"./Assets/audio/engine.ogg"},
+    {id: "thunder", src:"./Assets/audio/thunder.ogg"},
+    {id: "yay", src:"./Assets/audio/yay.ogg"}
   ];
 
   let textureAtlasData = {
 
     "images": [
-      "../../Assets/spritesheets/textureatlas.png"
+      "./Assets/spritesheets/textureatlas.png"
   ],
   
   "frames": [
