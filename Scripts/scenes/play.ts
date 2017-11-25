@@ -14,6 +14,11 @@ module scenes {
     private _bulletNum: number;
     private _bulletCounter: number;
 
+    private _bigExplosions: objects.BigExplosion[];
+    private _bigExplosionNum: number;
+    private _bigExplosionCounter: number;
+
+
     private _livesLabel: objects.Label;
     private _scoreLabel: objects.Label;
 
@@ -54,6 +59,10 @@ module scenes {
       this._cloudNum = 3;
       this._clouds = new Array<objects.Cloud>();
 
+      this._bigExplosionNum = 10;
+      this._bigExplosions = new Array<objects.BigExplosion>();
+      this._bigExplosionCounter = 0;
+
       this._lives = 5;
       this._score = 0;
 
@@ -78,6 +87,10 @@ module scenes {
         this._checkCollision(cloud);
       });
 
+      this._bigExplosions.forEach(explosion => {
+        explosion.Update();
+      });
+
 
 
       return this._currentScene;
@@ -98,6 +111,12 @@ module scenes {
         this.addChild(this._clouds[count]);
       }
 
+      for (let count = 0; count < this._bigExplosionNum; count++) {
+        this._bigExplosions[count] = new objects.BigExplosion(this._textureAtlas);
+        this.addChild(this._bigExplosions[count]);
+        
+      }
+
       this.addChild(this._livesLabel);
       this.addChild(this._scoreLabel);
 
@@ -111,10 +130,21 @@ module scenes {
         this._bullets[this._bulletCounter].y = this._plane.bulletSpawn.y;
 
         this._bulletCounter++;
-        console.log(this._bulletCounter);
         if(this._bulletCounter >= this._bulletNum -1) {
           this._bulletCounter = 0;
         }
+    }
+
+    private _createBigExplosion():void {
+      this._bigExplosions[this._bigExplosionCounter].x = this._plane.x;
+      this._bigExplosions[this._bigExplosionCounter].y = this._plane.y;
+
+      this._bigExplosions[this._bigExplosionCounter].gotoAndPlay("bigExplosion");
+
+      this._bigExplosionCounter++;
+      if(this._bigExplosionCounter >= this._bigExplosionNum -1) {
+        this._bigExplosionCounter = 0;
+      }
     }
 
 
@@ -144,6 +174,7 @@ module scenes {
             }
             createjs.Sound.play("thunder", 0, 0, 0, 0, 0.5, 0);
             this._livesLabel.text = "Lives: " + this._lives;
+            this._createBigExplosion();
           }
 
           other.isColliding = true;

@@ -35,6 +35,9 @@ var scenes;
             this._bulletCounter = 0;
             this._cloudNum = 3;
             this._clouds = new Array();
+            this._bigExplosionNum = 10;
+            this._bigExplosions = new Array();
+            this._bigExplosionCounter = 0;
             this._lives = 5;
             this._score = 0;
             this._livesLabel = new objects.Label("Lives: " + this._lives, "30px", "Dock51", "#FFFF00", 10, 10, false);
@@ -54,6 +57,9 @@ var scenes;
                 cloud.Update();
                 _this._checkCollision(cloud);
             });
+            this._bigExplosions.forEach(function (explosion) {
+                explosion.Update();
+            });
             return this._currentScene;
         };
         Play.prototype.Main = function () {
@@ -68,6 +74,10 @@ var scenes;
                 this._clouds[count] = new objects.Cloud(this._textureAtlas);
                 this.addChild(this._clouds[count]);
             }
+            for (var count = 0; count < this._bigExplosionNum; count++) {
+                this._bigExplosions[count] = new objects.BigExplosion(this._textureAtlas);
+                this.addChild(this._bigExplosions[count]);
+            }
             this.addChild(this._livesLabel);
             this.addChild(this._scoreLabel);
             //window.addEventListener("mousedown", () => {this._bulletFire()});
@@ -77,9 +87,17 @@ var scenes;
             this._bullets[this._bulletCounter].x = this._plane.bulletSpawn.x;
             this._bullets[this._bulletCounter].y = this._plane.bulletSpawn.y;
             this._bulletCounter++;
-            console.log(this._bulletCounter);
             if (this._bulletCounter >= this._bulletNum - 1) {
                 this._bulletCounter = 0;
+            }
+        };
+        Play.prototype._createBigExplosion = function () {
+            this._bigExplosions[this._bigExplosionCounter].x = this._plane.x;
+            this._bigExplosions[this._bigExplosionCounter].y = this._plane.y;
+            this._bigExplosions[this._bigExplosionCounter].gotoAndPlay("bigExplosion");
+            this._bigExplosionCounter++;
+            if (this._bigExplosionCounter >= this._bigExplosionNum - 1) {
+                this._bigExplosionCounter = 0;
             }
         };
         Play.prototype._checkCollision = function (other) {
@@ -104,6 +122,7 @@ var scenes;
                         }
                         createjs.Sound.play("thunder", 0, 0, 0, 0, 0.5, 0);
                         this._livesLabel.text = "Lives: " + this._lives;
+                        this._createBigExplosion();
                     }
                     other.isColliding = true;
                 }

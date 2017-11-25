@@ -37,9 +37,13 @@
   
   "animations": {
       "bigExplosion": {
-           "frames": [0, 1, 2, 3, 4, 5, 6 ,7],
-           "speed": 1
+           "frames": [0, 1, 2, 3, 4, 5, 6],
+           "next": "clearExplosion",
+           "speed": 0.25
           },
+      "clearExplosion" : {
+            "frames": [7]
+      },
       "bullet": { "frames": [8] },
       "cloud": { "frames": [9] },
       "island": { "frames": [10] },
