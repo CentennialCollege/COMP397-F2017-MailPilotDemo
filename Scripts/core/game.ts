@@ -12,28 +12,46 @@
 
   let textureAtlasData = {
 
-      "images": [
-        "../../Assets/spritesheets/textureatlas.png"
-      ],
-
-      "frames": [
-          [1, 1, 9, 9, 0, 0, 0],
-          [12, 1, 226, 178, 0, 0, 0],
-          [1, 181, 62, 63, 0, 0, 0],
-          [65, 181, 65, 65, 0, 0, 0],
-          [1, 248, 150, 50, 0, 0, 0],
-          [1, 300, 150, 50, 0, 0, 0],
-      ],
-
-      "animations": {
-          "bullet": { "frames": [0] },
-          "cloud": { "frames": [1] },
-          "island": { "frames": [2] },
-          "plane": { "frames": [3] },
-          "restartButton": { "frames": [4] },
-          "startButton": { "frames": [5] }
-      }
-    };
+    "images": [
+      "../../Assets/spritesheets/textureatlas.png"
+  ],
+  
+  "frames": [
+      [1, 1, 53, 54, 0, 0, 0],
+      [56, 1, 53, 54, 0, 0, 0],
+      [111, 1, 53, 54, 0, 0, 0],
+      [166, 1, 53, 54,  0, 0, 0],
+      [221, 1, 53, 54,  0, 0, 0],
+      [276, 1, 53, 54,  0, 0, 0],
+      [331, 1, 52, 53,  0, 0, 0],
+      [385, 1, 3, 3,  0, 0, 0],
+      [390, 1, 9, 9,  0, 0, 0],
+      [1, 57, 226, 178,  0, 0, 0],
+      [229, 57, 62, 62,  0, 0, 0],
+      [293, 57, 62, 51,  0, 0, 0],
+      [357, 57, 62, 51,  0, 0, 0],
+      [421, 57, 62, 51,  0, 0, 0],
+      [1, 237, 150, 50,  0, 0, 0],
+      [153, 237, 150, 50,  0, 0, 0]
+  ],
+  
+  "animations": {
+      "bigExplosion": {
+           "frames": [0, 1, 2, 3, 4, 5, 6 ,7],
+           "speed": 1
+          },
+      "bullet": { "frames": [8] },
+      "cloud": { "frames": [9] },
+      "island": { "frames": [10] },
+      "plane": { 
+          "frames": [11, 12, 13],
+          "speed": 0.25
+      },
+      "restartButton": { "frames": [14] },
+      "startButton": { "frames": [15] }
+  }
+  
+  };
 
   let textureAtlas: createjs.SpriteSheet;
 
@@ -60,6 +78,7 @@
     Main();
   }
 
+  // Main Game Loop
   function Update() {
     let newState = currentScene.Update();
     if(newState != currentState) {

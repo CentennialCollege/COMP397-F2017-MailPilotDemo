@@ -1,30 +1,42 @@
 {
 
 "images": [
-    "textureatlas.png"
+    "../../Assets/spritesheets/textureatlas.png"
 ],
 
 "frames": [
-    [1, 1, 9, 9, 0, 4.5, 4.5],
-    [12, 1, 226, 178, 0, 113, 89],
-    [1, 181, 62, 63, 0, 31, 31.5],
-    [65, 181, 65, 65, 0, 32.5, 32.5],
-    [1, 248, 150, 50, 0, 75, 25],
-    [1, 300, 150, 50, 0, 75, 25]
+    [1, 1, 53, 54, 0, 0, 0],
+    [56, 1, 53, 54, 0, 0, 0],
+    [111, 1, 53, 54, 0, 0, 0],
+    [166, 1, 53, 54,  0, 0, 0],
+    [221, 1, 53, 54,  0, 0, 0],
+    [276, 1, 53, 54,  0, 0, 0],
+    [331, 1, 52, 53,  0, 0, 0],
+    [385, 1, 3, 3,  0, 0, 0],
+    [390, 1, 9, 9,  0, 0, 0],
+    [1, 57, 226, 178,  0, 0, 0],
+    [229, 57, 62, 62,  0, 0, 0],
+    [293, 57, 62, 51,  0, 0, 0],
+    [357, 57, 62, 51,  0, 0, 0],
+    [421, 57, 62, 51,  0, 0, 0],
+    [1, 237, 150, 50,  0, 0, 0],
+    [153, 237, 150, 50,  0, 0, 0]
 ],
 
 "animations": {
-    "bullet": { "frames": [0] },
-    "cloud": { "frames": [1] },
-    "island": { "frames": [2] },
-    "plane": { "frames": [3] },
-    "restartButton": { "frames": [4] },
-    "startButton": { "frames": [5] }
-},
-
-"texturepacker": [
-        "SmartUpdateHash: $TexturePacker:SmartUpdate:4d0d283b10b6cdfacef3c96c6bb9960a:ea02524446fecb4d23ceeb22509d39cb:f9bd9f63f63bc90b071432fc145277dd$",
-        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
-]
+    "bigExplosion": {
+         "frames": [0, 1, 2, 3, 4, 5, 6 ,7],
+         "speed": 1
+        },
+    "bullet": { "frames": [8] },
+    "cloud": { "frames": [9] },
+    "island": { "frames": [10] },
+    "plane": { 
+        "frames": [11, 12, 13],
+        "speed": 1
+    },
+    "restartButton": { "frames": [14] },
+    "startButton": { "frames": [15] }
+}
 
 }
